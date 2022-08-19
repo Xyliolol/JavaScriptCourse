@@ -10,22 +10,23 @@
 
 <body>
     <script>
+
         'use strict';
-        function addition(a, b) {
-            return a + b;
-        }
+        let a = 5;
+        let b = 3;
+        let result;
 
-        function subtraction(a, b) {
-            return a - b;
-        }
+        if (a >= 0 && b >= 0)
+            result = a - b;
 
-        function multiplication(a, b) {
-            return a * b;
-        }
+        else if (a < 0 && b < 0)
+            result = a * b;
 
-        function division(a, b) {
-            return a / b;
-        }
+        else if ((a < 0 && b >= 0) || (a >= 0 && b < 0))
+            result = a + b;
+
+        prompt(result);
+
     </script>
 </body>
 
