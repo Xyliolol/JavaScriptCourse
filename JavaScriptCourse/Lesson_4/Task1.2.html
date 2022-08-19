@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        'use strict';
+        function Post1(author, text, date) {
+            this.author = author;
+            this.text = text;
+            this.date = date;
+        }
+        Post.prototype.edit = function (text) {
+            this.text = text;
+        };
+
+        function AttachedPost1(author, text, date) {
+            Post.call(this, author, text, date);
+            this.highlighted = false;
+        }
+        AttachedPost1.prototype = Object.create(Post1.prototype);
+        AttachedPost1.prototype.constructor = AttachedPost1;
+
+        AttachedPost1.prototype.makeTextHighlighted = function () {
+            this.highlighted = true;
+        };
+
+        const attached = new AttachedPost1('user', 'hello', new Date());
+        console.log(attached);
+        attached.makeTextHighlighted();
+        attached.edit('hello123');
+        console.log(attached);
+
+        class Post2 {
+            constructor(author, text, date) {
+                this.author = author;
+                this.text = text;
+                this.date = date;
+            }
+
+            edit(text) {
+                this.text = text;
+            }
+        }
+
+        class AttachedPost2 extends Post2 {
+            constructor(author, text, date) {
+                super(author.text.date);
+                this.highlighted = false;
+            }
+
+            makeTextHighlighted2() {
+                this.highlighted = true;
+            }
+        }
+
+
+        const attached2 = new AttachedPost2('user', 'hello', new Date());
+        console.log(attached2);
+        attached2.makeTextHighlighted2();
+        attached2.edit('hello123');
+        console.log(attached2);
+    </script>
+</body>
+
+</html>
